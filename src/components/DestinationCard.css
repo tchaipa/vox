@@ -1,0 +1,44 @@
+.dest-card {
+  display: block;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--line);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.dest-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(22, 36, 28, 0.14);
+}
+
+.dest-card:focus-visible {
+  outline: 2px solid var(--gold-deep);
+  outline-offset: 2px;
+}
+
+.dest-card__photo {
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+}
+
+.dest-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dest-card__body {
+  padding: 18px 20px 22px;
+}
+
+.dest-card__body h3 {
+  font-size: 1.1rem;
+  margin: 4px 0 8px;
+}
+
+.dest-card__body p {
+  font-size: 0.88rem;
+  color: rgba(22, 36, 28, 0.72);
+  margin: 0;
+}

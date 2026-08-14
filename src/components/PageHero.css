@@ -1,0 +1,31 @@
+.page-hero {
+  position: relative;
+  background: var(--forest);
+  background-size: cover;
+  background-position: center;
+  color: var(--sand);
+  padding: 96px 0 56px;
+}
+
+.page-hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(22, 36, 28, 0.55), rgba(22, 36, 28, 0.86));
+}
+
+.page-hero__content {
+  position: relative;
+  max-width: 640px;
+}
+
+.page-hero h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin-top: 10px;
+  color: var(--sand);
+}
+
+.page-hero p {
+  color: rgba(242, 234, 217, 0.82);
+  font-size: 1.02rem;
+  margin-top: 6px;
+}

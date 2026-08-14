@@ -1,0 +1,30 @@
+.about__story {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.about__story h2 { margin-top: 10px; font-size: 2rem; }
+
+.about__figures {
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+}
+.about__figures > div { display: flex; flex-direction: column; gap: 4px; }
+.about__figure-num { font-family: var(--display); font-size: 2rem; color: var(--rust); }
+.about__figures span:last-child { font-size: 0.82rem; color: rgba(22,36,28,0.65); }
+
+.about__values h2 { margin: 8px 0 30px; }
+.about__values h4 { color: var(--gold); margin-bottom: 8px; font-size: 1.05rem; }
+.about__values p { color: rgba(242,234,217,0.78); font-size: 0.92rem; margin: 0; }
+
+.about__team h2 { margin: 8px 0 30px; }
+.about__person { padding: 24px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.about__person h4 { margin: 0; font-size: 1.05rem; }
+.about__person p { margin: 4px 0 0; font-size: 0.88rem; color: rgba(22,36,28,0.7); }
+
+@media (max-width: 860px) {
+  .about__story { grid-template-columns: 1fr; }
+}

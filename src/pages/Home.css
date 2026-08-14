@@ -1,0 +1,152 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  background-image: url("./../assets/vicfalls.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  /* background: url("https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1800&q=80") center/cover; */
+  color: var(--sand);
+}
+
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(22, 36, 28, 0.7) 0%, rgba(22, 36, 28, 0.55) 45%, rgba(22, 36, 28, 0.92) 100%);
+}
+
+.hero__content {
+  position: relative;
+  max-width: 700px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.hero__content .eyebrow {
+  color: yellow;
+}
+
+.hero h1 {
+  font-size: clamp(2.3rem, 5vw, 3.6rem);
+  color: var(--white);
+  margin-top: 14px;
+}
+
+.hero__content p {
+  font-size: 1.08rem;
+  color: rgba(242, 234, 217, 0.86);
+  max-width: 560px;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 14px;
+  margin: 26px 0 44px;
+  flex-wrap: wrap;
+}
+
+.hero__stats {
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding-top: 28px;
+  border-top: 1px solid var(--line-on-dark);
+}
+
+.hero__stats dt {
+  font-family: var(--display);
+  font-size: 1.9rem;
+  color: yellow;
+}
+
+.hero__stats dd {
+  margin: 2px 0 0;
+  font-size: 0.82rem;
+  color: rgba(242, 234, 217, 0.7);
+}
+
+.section__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 36px;
+}
+
+.section__head h2 {
+  margin-top: 6px;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+}
+
+.why__grid {
+  align-items: center;
+}
+
+.why__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.why__list li {
+  display: flex;
+  gap: 18px;
+}
+
+.why__num {
+  font-family: var(--mono);
+  color: yellow;
+  font-size: 0.85rem;
+  padding-top: 4px;
+}
+
+.why__list h4 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+}
+
+.why__list p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(242, 234, 217, 0.75);
+}
+
+.cta__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  background: var(--white);
+  border: 1px solid rgba(22, 36, 28, 0.14);
+  border-radius: 4px;
+  padding: 50px !important;
+}
+
+.cta__inner h2 {
+  font-size: 1.7rem;
+  margin-bottom: 6px;
+}
+
+.cta__inner p {
+  margin: 0;
+  color: rgba(22, 36, 28, 0.7);
+}
+
+.cta .hero__actions {
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .cta__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

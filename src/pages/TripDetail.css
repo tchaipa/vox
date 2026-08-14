@@ -1,0 +1,140 @@
+.trip-detail__hero {
+  position: relative;
+  min-height: 360px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  color: var(--sand);
+}
+
+.trip-detail__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(22, 36, 28, 0.35), rgba(22, 36, 28, 0.9));
+}
+
+.trip-detail__hero-content {
+  position: relative;
+  padding: 60px 24px 40px;
+  max-width: 720px;
+}
+
+.trip-detail__hero-content h1 {
+  font-size: clamp(2rem, 4vw, 2.7rem);
+  color: var(--white);
+  margin-top: 8px;
+}
+
+.trip-detail__hero-content p {
+  color: rgba(242, 234, 217, 0.85);
+  margin: 0;
+}
+
+.trip-detail__grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.trip-detail__grid h2 {
+  font-size: 1.35rem;
+  margin-bottom: 14px;
+}
+
+.trip-detail__grid h2:not(:first-child) {
+  margin-top: 34px;
+}
+
+.trip-detail__highlights {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.trip-detail__highlights li {
+  padding-left: 26px;
+  position: relative;
+  font-size: 0.94rem;
+  color: rgba(22, 36, 28, 0.8);
+}
+
+.trip-detail__highlights li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 8px;
+  height: 8px;
+  background: #022c0f;
+  border-radius: 50%;
+}
+
+.trip-detail__ticket {
+  position: sticky;
+  top: 88px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.trip-detail__ticket-row {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--line);
+}
+
+.trip-detail__ticket-row:last-of-type {
+  border-bottom: none;
+}
+
+.trip-detail__price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 6px 0 4px;
+}
+
+.trip-detail__price span:first-child {
+  font-size: 0.8rem;
+  color: rgba(22, 36, 28, 0.6);
+}
+
+.trip-detail__price strong {
+  font-family: var(--display);
+  font-size: 2rem;
+  color: var(--rust);
+}
+
+.trip-detail__price span:last-child {
+  font-size: 0.8rem;
+  color: rgba(22, 36, 28, 0.6);
+}
+
+.trip-detail__note {
+  font-size: 0.82rem;
+  text-align: center;
+  color: rgba(22, 36, 28, 0.65);
+  margin: 0;
+}
+
+.trip-detail__note a {
+  color: var(--rust);
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .trip-detail__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trip-detail__ticket {
+    position: static;
+  }
+}

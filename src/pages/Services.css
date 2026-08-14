@@ -1,0 +1,19 @@
+.service-card { padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+.service-card h3 { font-size: 1.15rem; margin: 0; }
+.service-card p { margin: 0; font-size: 0.9rem; color: rgba(22,36,28,0.7); }
+.service-card ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+.service-card li { font-size: 0.85rem; color: rgba(22,36,28,0.65); }
+
+.cta__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 40px;
+}
+.cta__inner h2 { font-size: 1.6rem; margin-bottom: 6px; }
+.cta__inner p { margin: 0; color: rgba(22,36,28,0.7); }

@@ -1,0 +1,48 @@
+.trips__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.trips__filters {
+  display: flex;
+  gap: 8px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 4px;
+}
+.trips__filters button {
+  background: none;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 3px;
+  font-size: 0.86rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: rgba(22,36,28,0.7);
+}
+.trips__filters button.is-active { background: var(--forest); color: var(--sand); }
+
+.trips__sort {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.86rem;
+  color: rgba(22,36,28,0.7);
+}
+.trips__sort select {
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.trips__empty {
+  text-align: center;
+  padding: 60px 0;
+  color: rgba(22,36,28,0.6);
+}

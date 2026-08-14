@@ -1,0 +1,139 @@
+.ticket {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  position: relative;
+}
+
+.ticket:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(22, 36, 28, 0.14);
+}
+
+.ticket:focus-visible {
+  outline: 2px solid var(--gold-deep);
+  outline-offset: 2px;
+}
+
+.ticket__photo {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.ticket__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ticket__region {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(22, 36, 28, 0.78);
+  color: var(--sand);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 9px;
+  border-radius: 3px;
+}
+
+.ticket__stub {
+  padding: 20px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.ticket__stub-main h3 {
+  font-size: 1.15rem;
+  margin: 4px 0 8px;
+}
+
+.ticket__summary {
+  font-size: 0.87rem;
+  color: rgba(22, 36, 28, 0.72);
+  margin: 0;
+}
+
+.ticket__perf {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+
+.ticket__perf::before,
+.ticket__perf::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: var(--sand);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.ticket__perf::before {
+  left: -32px;
+}
+
+.ticket__perf::after {
+  right: -32px;
+}
+
+.ticket__perf span {
+  flex: 1;
+  height: 1px;
+  border-top: 1px dashed var(--line);
+}
+
+.ticket__data {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.ticket__data>div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ticket__label {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(22, 36, 28, 0.5);
+}
+
+.ticket__value {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  font-weight: 500;
+}
+
+.ticket__value--price {
+  color: var(--rust);
+  font-weight: 600;
+}
+
+.ticket__low {
+  align-self: flex-start;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--rust);
+  background: rgb(248, 248, 155);
+  padding: 4px 9px;
+  border-radius: 3px;
+}
