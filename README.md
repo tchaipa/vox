@@ -1,17 +1,75 @@
-# React + Vite
+# VoxVoyager
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A React + Vite website and booking app for VoxVoyager, a Zimbabwe-based travel agency.
 
-Currently, two official plugins are available:
+## What's included
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Home, About, Services** — company overview and offerings
+- **Trips** — upcoming departures with region/price filters, individual trip pages
+- **Destinations** — places VoxVoyager operates in, local and international
+- **Past Trips** — a gallery of completed departures
+- **Accounts** — register/log in, then reserve a seat on any trip and manage bookings from a personal dashboard
+- **Contact** — office details and a message form
 
-## React Compiler
+## Backend: Supabase (Postgres + real auth)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Accounts and reservations are backed by [Supabase](https://supabase.com) — a
+hosted Postgres database plus real authentication (hashed passwords,
+sessions, optional email confirmation). Set it up once:
 
-## Expanding the Oxlint configuration
+1. Create a free project at supabase.com.
+2. Open **SQL Editor** in the Supabase dashboard, paste in the contents of
+   `supabase/schema.sql`, and run it. This creates the `profiles` and
+   `reservations` tables with Row Level Security so each user can only see
+   their own data.
+3. In **Project Settings > API**, copy your **Project URL** and **anon
+   public key**.
+4. Copy `.env.example` to `.env` and paste those two values in.
+5. (Optional) In **Auth > Providers > Email**, turn "Confirm email" off if
+   you want new accounts to be logged in immediately after signup instead
+   of needing to click a confirmation link first. The app handles either
+   setting — with confirmation on, users see a "check your inbox" screen
+   after registering.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
-# vox
+## Running it
+
+```bash
+npm install
+npm run dev       # local dev server
+npm run build     # production build to dist/
+npm run preview   # preview the production build
+```
+
+Never commit your `.env` file — it's already in `.gitignore`. The anon key
+is safe to ship in frontend code (that's how Supabase is designed to work);
+it only grants access within the limits of the Row Level Security policies
+in `supabase/schema.sql`.
+
+## What's still a prototype
+
+- The contact form doesn't send anything — it just shows a confirmation.
+  Wiring it up would mean adding a Supabase Edge Function or a service like
+  Resend/SendGrid to actually deliver the message.
+- Trip and destination data (`src/data/`) is static, not stored in the
+  database. That's fine for a fixed set of scheduled departures; if you
+  want to manage trips from an admin panel later, move that data into a
+  Supabase `trips` table the same way reservations were moved.
+
+## Project structure
+
+```
+src/
+  lib/supabaseClient.js   Supabase client, reads env vars
+  lib/storage.js          All auth + reservation calls go through here
+  context/AuthContext.jsx React context wrapping storage.js for the app
+  data/                   Static trip/destination content
+  components/             Shared UI (Navbar, Footer, TicketCard, ...)
+  pages/                  One file per route
+supabase/schema.sql       Run this in the Supabase SQL Editor once
+```
+
+## Stack
+
+React 19, React Router 7, Vite, plain CSS (no framework) — custom design
+system defined in `src/index.css`. Supabase for auth and the database.
+Photography from Unsplash.
