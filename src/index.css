@@ -163,7 +163,8 @@ textarea {
 }
 
 .btn--outline:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: #022c0f;
+  color: white !important;
 }
 
 .btn--outline-light {
@@ -172,7 +173,7 @@ textarea {
 }
 
 .btn--outline-light:hover {
-  background: rgba(242, 234, 217, 0.08);
+  background: #073e07 !;
   color: yellow;
 }
 
@@ -248,7 +249,7 @@ textarea {
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  outline: 1px solid #079207;
+  outline: 1px solid #073e07;
   outline-offset: 1px;
 }
 

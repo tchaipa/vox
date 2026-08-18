@@ -1,11 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import {
-  createUser,
-  verifyLogin,
-  getSession,
-  setSession,
-  clearSession,
-  getUsers,
+  registerUser,
+  loginUser,
+  logoutUser,
+  getCurrentUser,
+  onAuthChange,
 } from "../lib/storage";
 
 const AuthContext = createContext(null);
@@ -15,30 +14,45 @@ export function AuthProvider({ children }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const sessionId = getSession();
-    if (sessionId) {
-      const found = getUsers().find((u) => u.id === sessionId);
-      if (found) setUser(found);
-    }
-    setReady(true);
+    let active = true;
+
+    getCurrentUser()
+      .then((found) => {
+        if (active) setUser(found);
+      })
+      .finally(() => {
+        if (active) setReady(true);
+      });
+
+    const unsubscribe = onAuthChange((updatedUser) => {
+      if (active) setUser(updatedUser);
+    });
+
+    return () => {
+      active = false;
+      unsubscribe();
+    };
   }, []);
 
-  function register({ name, email, password, phone }) {
-    const newUser = createUser({ name, email, password, phone });
-    setSession(newUser.id);
-    setUser(newUser);
-    return newUser;
+  async function register({ name, email, password, phone }) {
+    const { user: newUser, needsEmailConfirmation } = await registerUser({
+      name,
+      email,
+      password,
+      phone,
+    });
+    if (!needsEmailConfirmation) setUser(newUser);
+    return { user: newUser, needsEmailConfirmation };
   }
 
-  function login(email, password) {
-    const found = verifyLogin(email, password);
-    setSession(found.id);
+  async function login(email, password) {
+    const found = await loginUser(email, password);
     setUser(found);
     return found;
   }
 
-  function logout() {
-    clearSession();
+  async function logout() {
+    await logoutUser();
     setUser(null);
   }
 

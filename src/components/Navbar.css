@@ -48,13 +48,13 @@
 .navbar__links a {
   font-size: 0.92rem;
   font-weight: 500;
-  color: var(--ink);
+  color: #073e07;
   padding: 6px 2px;
   border-bottom: 2px solid transparent;
 }
 
 .navbar__links a:hover {
-  color: white;
+  color: yellow;
 }
 
 .navbar__links a.is-active {

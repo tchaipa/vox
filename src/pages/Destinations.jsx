@@ -6,7 +6,9 @@ import "./Trips.css";
 
 export default function Destinations() {
   const [region, setRegion] = useState("all");
-  const filtered = destinations.filter((d) => region === "all" || d.region === region);
+  const filtered = destinations.filter(
+    (d) => region === "all" || d.region === region,
+  );
 
   return (
     <>
@@ -20,10 +22,29 @@ export default function Destinations() {
       <section className="section">
         <div className="container">
           <div className="trips__toolbar">
-            <div className="trips__filters" role="group" aria-label="Filter by region">
-              <button className={region === "all" ? "is-active" : ""} onClick={() => setRegion("all")}>All</button>
-              <button className={region === "local" ? "is-active" : ""} onClick={() => setRegion("local")}>Zimbabwe</button>
-              <button className={region === "international" ? "is-active" : ""} onClick={() => setRegion("international")}>International</button>
+            <div
+              className="trips__filters"
+              role="group"
+              aria-label="Filter by region"
+            >
+              <button
+                className={region === "all" ? "is-active" : ""}
+                onClick={() => setRegion("all")}
+              >
+                All
+              </button>
+              <button
+                className={region === "local" ? "is-active" : ""}
+                onClick={() => setRegion("local")}
+              >
+                Local
+              </button>
+              <button
+                className={region === "international" ? "is-active" : ""}
+                onClick={() => setRegion("international")}
+              >
+                International
+              </button>
             </div>
           </div>
 

@@ -29,10 +29,29 @@ export default function Trips() {
       <section className="section">
         <div className="container">
           <div className="trips__toolbar">
-            <div className="trips__filters" role="group" aria-label="Filter by region">
-              <button className={region === "all" ? "is-active" : ""} onClick={() => setRegion("all")}>All trips</button>
-              <button className={region === "local" ? "is-active" : ""} onClick={() => setRegion("local")}>Zimbabwe</button>
-              <button className={region === "international" ? "is-active" : ""} onClick={() => setRegion("international")}>International</button>
+            <div
+              className="trips__filters"
+              role="group"
+              aria-label="Filter by region"
+            >
+              <button
+                className={region === "all" ? "is-active" : ""}
+                onClick={() => setRegion("all")}
+              >
+                All trips
+              </button>
+              <button
+                className={region === "local" ? "is-active" : ""}
+                onClick={() => setRegion("local")}
+              >
+                Local
+              </button>
+              <button
+                className={region === "international" ? "is-active" : ""}
+                onClick={() => setRegion("international")}
+              >
+                International
+              </button>
             </div>
 
             <label className="trips__sort">
@@ -45,7 +64,10 @@ export default function Trips() {
           </div>
 
           {filtered.length === 0 ? (
-            <p className="trips__empty">No trips match that filter right now — check back soon or try another region.</p>
+            <p className="trips__empty">
+              No trips match that filter right now — check back soon or try
+              another region.
+            </p>
           ) : (
             <div className="grid grid--3">
               {filtered.map((t) => (
