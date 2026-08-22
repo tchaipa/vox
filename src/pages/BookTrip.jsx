@@ -37,9 +37,9 @@ export default function BookTrip() {
   const maxTravelers = Math.min(trip.seatsLeft, 6);
   const total = travelers * trip.price;
 
-  function handleSubmit(ev) {
+  async function handleSubmit(ev) {
     ev.preventDefault();
-    const reservation = createReservation({
+    const reservation = await createReservation({
       userId: user.id,
       tripId: trip.id,
       tripTitle: trip.title,

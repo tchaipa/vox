@@ -13,11 +13,11 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  function handleSubmit(ev) {
+  async function handleSubmit(ev) {
     ev.preventDefault();
     setError("");
     try {
-      login(email.trim(), password);
+      await login(email.trim(), password);
       navigate(from, { replace: true });
     } catch (err) {
       setError(err.message);

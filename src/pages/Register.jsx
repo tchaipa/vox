@@ -34,12 +34,12 @@ export default function Register() {
     return Object.keys(e).length === 0;
   }
 
-  function handleSubmit(ev) {
+  async function handleSubmit(ev) {
     ev.preventDefault();
     setFormError("");
     if (!validate()) return;
     try {
-      register({
+      await register({
         name: form.name.trim(),
         email: form.email.trim(),
         phone: form.phone.trim(),
