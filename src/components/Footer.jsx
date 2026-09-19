@@ -7,10 +7,13 @@ export default function Footer() {
       <div className="container footer__inner">
         <div className="footer__brand">
           <div className="footer__logo">
-            {/* <svg width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
               <rect width="32" height="32" rx="6" fill="var(--gold)" />
-              <path d="M6 22 L16 8 L26 22 L20 22 L16 15 L12 22 Z" fill="var(--forest)" />
-            </svg> */}
+              <path
+                d="M6 22 L16 8 L26 22 L20 22 L16 15 L12 22 Z"
+                fill="var(--forest)"
+              />
+            </svg>
             <span>VoxVoyager</span>
           </div>
           <p>
@@ -46,6 +49,12 @@ export default function Footer() {
         <span className="footer-credit">
           © {new Date().getFullYear()} VoxVoyager Travel (Pvt) Ltd.
         </span>
+        {/* <span className="footer-credit">
+          Made by{" "}
+          <a className="footer-link" href="https://www.infobytsolutions.xyz">
+            InfoByte Solutions
+          </a>
+        </span> */}
       </div>
     </footer>
   );

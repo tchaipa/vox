@@ -27,7 +27,7 @@ create policy "Users can insert their own profile"
 
 -- Automatically create a profile row whenever a new auth user signs up,
 -- pulling name/phone out of the signUp() metadata (see supabaseClient usage).
-create function public.handle_new_user()
+create or replace function  public.handle_new_user()
 returns trigger as $$
 begin
   insert into public.profiles (id, name, phone)
@@ -40,11 +40,16 @@ begin
 end;
 $$ language plpgsql security definer;
 
+-- Drop the trigger if it already exists before creating it
+DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
+-- Re-create the trigger
 create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
 
 -- 2. Reservations table.
+DROP TABLE IF EXISTS public.reservations;
+
 create table public.reservations (
   id uuid default gen_random_uuid() primary key,
   user_id uuid references auth.users on delete cascade not null,
