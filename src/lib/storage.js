@@ -11,8 +11,15 @@
 import { supabase } from "./supabaseClient";
 
 function mapAuthError(error) {
-  // Supabase's raw error messages are fine to show as-is for the common cases.
-  return new Error(error?.message || "Something went wrong. Please try again.");
+  const message = error?.message || "Something went wrong. Please try again.";
+
+  if (message.toLowerCase().includes("email rate limit exceeded")) {
+    return new Error(
+      "Too many sign-up attempts. Please wait a minute and try again, or use a different email address.",
+    );
+  }
+
+  return new Error(message);
 }
 
 export async function registerUser({ name, email, password, phone }) {

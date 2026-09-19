@@ -1,8 +1,18 @@
-import { pastTrips } from "../data/pastTrips";
+import { useEffect, useState } from "react";
+import { getAllPastTrips } from "../lib/storage";
 import PageHero from "../components/PageHero";
 import "./PastTrips.css";
 
 export default function PastTrips() {
+  const [pastTrips, setPastTrips] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getAllPastTrips()
+      .then(setPastTrips)
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <>
       <PageHero
@@ -14,23 +24,27 @@ export default function PastTrips() {
 
       <section className="section">
         <div className="container">
-          <div className="past-grid">
-            {pastTrips.map((p) => (
-              <article key={p.id} className="past-card card">
-                <div className="past-card__photo">
-                  <img src={p.image} alt="" loading="lazy" />
-                  <span className="badge past-card__date">{p.date}</span>
-                </div>
-                <div className="past-card__body">
-                  <span className="eyebroww">
-                    {p.country} · {p.travelers} travelers
-                  </span>
-                  <h3>{p.title}</h3>
-                  <p>{p.story}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+          {loading ? (
+            <p className="past-grid">Loading recent trips...</p>
+          ) : (
+            <div className="past-grid">
+              {pastTrips.map((p) => (
+                <article key={p.id} className="past-card card">
+                  <div className="past-card__photo">
+                    <img src={p.image} alt="" loading="lazy" />
+                    <span className="badge past-card__date">{p.date}</span>
+                  </div>
+                  <div className="past-card__body">
+                    <span className="eyebroww">
+                      {p.country} · {p.travelers} travelers
+                    </span>
+                    <h3>{p.title}</h3>
+                    <p>{p.story}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </>

@@ -1,11 +1,26 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { trips } from "../data/trips";
-import { destinations } from "../data/destinations";
+import { getAllTrips, getAllDestinations } from "../lib/storage";
 import TicketCard from "../components/TicketCard";
 import DestinationCard from "../components/DestinationCard";
 import "./Home.css";
 
 export default function Home() {
+  const [trips, setTrips] = useState([]);
+  const [destinations, setDestinations] = useState([]);
+
+  useEffect(() => {
+    Promise.all([getAllTrips(), getAllDestinations()])
+      .then(([tripsData, destinationsData]) => {
+        setTrips(tripsData);
+        setDestinations(destinationsData);
+      })
+      .catch(() => {
+        setTrips([]);
+        setDestinations([]);
+      });
+  }, []);
+
   const featured = trips.slice(0, 3);
   const spotlightDestinations = destinations.slice(0, 4);
 

@@ -18,6 +18,7 @@ export default function Register() {
   });
   const [errors, setErrors] = useState({});
   const [formError, setFormError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function update(field, value) {
     setForm((f) => ({ ...f, [field]: value }));
@@ -36,8 +37,11 @@ export default function Register() {
 
   async function handleSubmit(ev) {
     ev.preventDefault();
+    if (isSubmitting) return;
     setFormError("");
     if (!validate()) return;
+
+    setIsSubmitting(true);
     try {
       await register({
         name: form.name.trim(),
@@ -48,6 +52,8 @@ export default function Register() {
       navigate(from, { replace: true });
     } catch (err) {
       setFormError(err.message);
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -132,8 +138,12 @@ export default function Register() {
               <p className="field-error auth__form-error">{formError}</p>
             )}
 
-            <button type="submit" className="btn btn--primary btn--block">
-              Create account
+            <button
+              type="submit"
+              className="btn btn--primary btn--block"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Creating account..." : "Create account"}
             </button>
           </form>
 

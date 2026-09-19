@@ -1,11 +1,20 @@
-import { useState } from "react";
-import { destinations } from "../data/destinations";
+import { useEffect, useState } from "react";
+import { getAllDestinations } from "../lib/storage";
 import DestinationCard from "../components/DestinationCard";
 import PageHero from "../components/PageHero";
 import "./Trips.css";
 
 export default function Destinations() {
+  const [destinations, setDestinations] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [region, setRegion] = useState("all");
+
+  useEffect(() => {
+    getAllDestinations()
+      .then(setDestinations)
+      .finally(() => setLoading(false));
+  }, []);
+
   const filtered = destinations.filter(
     (d) => region === "all" || d.region === region,
   );
@@ -48,13 +57,17 @@ export default function Destinations() {
             </div>
           </div>
 
-          <div className="grid grid--3">
-            {filtered.map((d) => (
-              <div id={d.id} key={d.id}>
-                <DestinationCard destination={d} />
-              </div>
-            ))}
-          </div>
+          {loading ? (
+            <p className="trips__empty">Loading destinations...</p>
+          ) : (
+            <div className="grid grid--3">
+              {filtered.map((d) => (
+                <div id={d.id} key={d.id}>
+                  <DestinationCard destination={d} />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </>

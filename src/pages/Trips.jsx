@@ -1,12 +1,20 @@
-import { useMemo, useState } from "react";
-import { trips } from "../data/trips";
+import { useEffect, useMemo, useState } from "react";
+import { getAllTrips } from "../lib/storage";
 import TicketCard from "../components/TicketCard";
 import PageHero from "../components/PageHero";
 import "./Trips.css";
 
 export default function Trips() {
+  const [trips, setTrips] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [region, setRegion] = useState("all");
   const [sort, setSort] = useState("date");
+
+  useEffect(() => {
+    getAllTrips()
+      .then(setTrips)
+      .finally(() => setLoading(false));
+  }, []);
 
   const filtered = useMemo(() => {
     let list = trips.filter((t) => region === "all" || t.region === region);
@@ -15,7 +23,7 @@ export default function Trips() {
       return new Date(a.departure) - new Date(b.departure);
     });
     return list;
-  }, [region, sort]);
+  }, [trips, region, sort]);
 
   return (
     <>
@@ -63,7 +71,9 @@ export default function Trips() {
             </label>
           </div>
 
-          {filtered.length === 0 ? (
+          {loading ? (
+            <p className="trips__empty">Loading trips...</p>
+          ) : filtered.length === 0 ? (
             <p className="trips__empty">
               No trips match that filter right now — check back soon or try
               another region.

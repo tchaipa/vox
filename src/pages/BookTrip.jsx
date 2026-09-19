@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getTripById } from "../data/trips";
 import { useAuth } from "../context/AuthContext";
-import { createReservation } from "../lib/storage";
+import { createReservation, getTripByIdFromDb } from "../lib/storage";
 import "./BookTrip.css";
 
 function formatDate(iso) {
@@ -15,13 +14,29 @@ function formatDate(iso) {
 
 export default function BookTrip() {
   const { id } = useParams();
-  const trip = getTripById(id);
+  const [trip, setTrip] = useState(null);
+  const [loading, setLoading] = useState(true);
   const { user } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getTripByIdFromDb(id)
+      .then(setTrip)
+      .catch(() => setTrip(null))
+      .finally(() => setLoading(false));
+  }, [id]);
 
   const [travelers, setTravelers] = useState(1);
   const [notes, setNotes] = useState("");
   const [confirmed, setConfirmed] = useState(null);
+
+  if (loading) {
+    return (
+      <div className="container section">
+        <p>Loading trip...</p>
+      </div>
+    );
+  }
 
   if (!trip) {
     return (
