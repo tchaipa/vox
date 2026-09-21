@@ -48,10 +48,6 @@ create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
 
---   UPDATE public.profiles
--- SET is_admin = true
--- WHERE id = 'YOUR_USER_ID';
-
 -- 2. Reservations table.
 create table public.reservations (
   id uuid default gen_random_uuid() primary key,
