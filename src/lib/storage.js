@@ -12,8 +12,16 @@ import { supabase } from "./supabaseClient";
 
 function mapAuthError(error) {
   const message = error?.message || "Something went wrong. Please try again.";
+  const lower = message.toLowerCase();
 
-  if (message.toLowerCase().includes("email rate limit exceeded")) {
+  const isSignupRateLimit =
+    lower.includes("email rate limit exceeded") ||
+    lower.includes("too many sign-up attempts") ||
+    lower.includes("too many signup attempts") ||
+    (lower.includes("rate limit") &&
+      (lower.includes("sign") || lower.includes("email")));
+
+  if (isSignupRateLimit) {
     return new Error(
       "Too many sign-up attempts. Please wait a minute and try again, or use a different email address.",
     );
